@@ -17,6 +17,14 @@ The 'tracdocs' plugin adds a "Docs" tab to the trac project. Underneath this
 tab can be found all of the documentation that the current logged in user has
 access to.
 
+Some features:
+
+* Uses RestructuredText as a markup language.
+* Supports inline images and links.
+* Highlights source code using google-code-prettify.
+* Supports editing through Subversion and the Trac website.
+* Handles user permission using Subversion authorization.
+
 Note: this plugin respects the access rights of the user that is logged in.
 
 
