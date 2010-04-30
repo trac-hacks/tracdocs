@@ -1,0 +1,25 @@
+==========
+   TODO
+==========
+
+Some various ideas for improving tracdocs (in no particular order):
+
+* Support adding files and directories.
+
+* Support deleting files and directories.
+
+* Support moving files and directories.
+
+* Support view history of files.
+
+* Better binary file support (fix arbitrary 512 kb file size limit)
+
+* Support multiple "projects", each with their own ``docs`` directories.
+
+* Hide directories starting with "."?
+
+* Change display to multi-column for "large" directories?
+
+* WYSIWYG editor for ReST.
+
+* Support relative links, to other tracdoc files.

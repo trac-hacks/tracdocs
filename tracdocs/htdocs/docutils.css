@@ -1,0 +1,159 @@
+table.docutils {
+    border: 1px #d7d7d7 solid; }
+
+table.docutils thead {
+    background: #e5e5e5; }
+
+table.docutils td {
+    border-top: none;
+    border-bottom: 1px #d7d7d7 solid;
+    border-left: none;
+    border-right: 1px #d7d7d7 solid; }
+
+table.docutils th {
+    border-top: none;
+    border-bottom: 1px gray solid;
+    border-left: none;
+    border-right: 1px gray solid;
+    text-align: center; }
+
+dl.docutils dt {
+    font-weight: bold;
+    padding-bottom: 5px; }
+
+dl.docutils dd {
+    padding-bottom: 10px; }
+
+.first {
+  margin-top: 0 ! important }
+
+.last {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+div.abstract {
+  margin: 1em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  text-align: center ;
+  margin-left: 2em ;
+  margin-right: 2em ;
+  padding: 0.8em ;
+  border: thin solid #555555 }
+
+div.footer, div.header {
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em ;
+  border-left: thin solid black ; /* for poems */
+  padding-left: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ff6666 }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold ;
+  font-size: larger }
+
+div.topic {
+  margin: 2em }A
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.topic-title {
+  font-weight: bold }
+
+th.docinfo-name, th.field-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap }
+
+div.abstract {
+  padding: 0.1em 0.5em 0.1em 0.5em ;
+  background-color: #EEE ;
+  border: thin solid #CCC }
+
+div.note {
+  background-color: #C0FFC0;
+  border: thin solid #9fdd97;
+}
+
+div.important {
+  background-color: #FFC0C0;
+  border: thin solid #c2380f;
+}
+
+table.footnote {
+  border: none;
+  border-top: 1px lightgray solid;
+  width: 100%;
+}
+
+table.footnote td {
+  border: none;
+}
+
+table.footnote th {
+  border: none;
+}
+
+

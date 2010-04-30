@@ -1,0 +1,38 @@
+h1.title { 
+    font-size: 19px; 
+    margin: .15em 1em 0 0 
+}
+
+h1 { 
+    font-size: 16px 
+}
+
+h2 { 
+    font-size: 14px 
+}
+
+h3 {
+    font-size: 12px
+}
+
+div.indent {
+    padding-left: 25px;
+}
+
+div.dir {
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+div.file {
+    padding-bottom: 5px;
+}
+
+div.ext { 
+    font-size: x-small; 
+    color: #C0C0C0;
+    text-decoration: none; 
+    display: inline;
+    padding-left: 10px;
+}
+

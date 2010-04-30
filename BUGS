@@ -1,0 +1,14 @@
+==========
+   Bugs 
+==========
+
+* Collision detection incorrectly uses subversion last-revision-id instead of
+  the page's last-revision-id.
+
+* Syntax highlighting "guesses" the correct language to highlight and thus
+  occassionally highlights a little strangely in literal-blocks.  (Mostly 
+  only applies to blocks that contain numbers).
+
+* Editing through the web page creates an incorrect subversion diff, showing
+  the entire page as having changed when only a small part actually did.
+
