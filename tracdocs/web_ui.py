@@ -16,8 +16,9 @@ from trac.versioncontrol.api import Node
 from trac.versioncontrol.svn_fs import SubversionRepository
 
 
+
 class TracDocsPlugin(Component):
-    implements(IContentConverter, INavigationContributor, IPermissionRequestor, 
+    implements(IContentConverter, INavigationContributor, IPermissionRequestor,
                IRequestHandler, ITemplateProvider, ISearchSource)
 
     # ISearchSource methods
@@ -55,7 +56,7 @@ class TracDocsPlugin(Component):
         to_unicode = Mimeview(self.env).to_unicode
 
         def walk(node):
-            if node.path.endswith('.txt'):
+            if node.path.endswith('.txt') or node.path.endswith('.rst'):
                 yield node
             if node.kind == Node.DIRECTORY:
                 for subnode in node.get_entries():
@@ -132,7 +133,8 @@ class TracDocsPlugin(Component):
         title = base or 'Docs'
         if action != 'view':
             title += ' (%s)' % action
-        req.hdf['title'] = title
+        data = {}
+        data['title'] = title
 
         repos = self.env.get_repository(req.authname)
         node = repos.get_node(path, None)
@@ -142,7 +144,7 @@ class TracDocsPlugin(Component):
         else:
             page = FilePage(self.env, node, root, base)
 
-        req.hdf['docs.editable'] = not node.isdir
+        data['editable'] = not node.isdir
 
         # Store the history of the current dirpath
         history = [{'name': 'root', 'href': req.href.docs()}]
@@ -151,9 +153,10 @@ class TracDocsPlugin(Component):
             if not s: continue
             t += '/' + s
             history.append({
-                'name': s,
-                'href': req.href.docs(t)})
-        req.hdf['docs.history'] = list(reversed(history))
+                'name' : s,
+                'href' : req.href.docs(t),
+            })
+        data['history'] = list(reversed(history))
 
         if req.method == 'POST':
 
@@ -165,23 +168,23 @@ class TracDocsPlugin(Component):
                     req.redirect(req.href.docs(page.base))
                 elif int(version) != latest_version:
                     action = 'collision'
-                    self._render_editor(req, page)
+                    self._render_editor(req, page, data)
                 elif req.args.has_key('preview'):
                     action = 'preview'
-                    self._render_editor(req, page, preview=True)
+                    self._render_editor(req, page, data, preview=True)
                 else:
                     self._do_save(req, page)
 
         elif action == 'edit':
-            self._render_editor(req, page)
+            self._render_editor(req, page, data)
 
         else:
             req.perm.assert_permission('WIKI_VIEW')
 
             if node.isdir:
-                req.hdf['docs.entries'] = page.get_entries(req)
+                data['entries'] = page.get_entries(req)
                 if page.index is not None:
-                    req.hdf['docs.index'] = page.index.get_html(req)
+                    data['index'] = page.index.get_html(req)
                 else:
                     mimeview = Mimeview(self.env)
                     text = []
@@ -191,7 +194,7 @@ class TracDocsPlugin(Component):
                     text = '\n'.join(text)
                     mimetype = 'text/x-rst; charset=utf8'
                     result = mimeview.render(req, mimetype, text)
-                    req.hdf['docs.index'] = result
+                    data['index'] = result
 
             else:
                 mime_type, chunk = page.get_raw()
@@ -216,12 +219,12 @@ class TracDocsPlugin(Component):
                              conversion[3])
 
                 # Render the content into HTML
-                req.hdf['docs.content'] = page.get_html(req)
+                data['content'] = page.get_html(req)
 
 
-        req.hdf['docs.action'] = action
-        req.hdf['docs.current_href'] = req.href.docs(page.base)
-        req.hdf['docs.log_href'] = req.href.log(page.path)
+        data['action'] = action
+        data['current_href'] = req.href.docs(page.base)
+        data['log_href'] = req.href.log(page.path)
 
         # Include trac wiki stylesheet
         add_stylesheet(req, 'common/css/wiki.css')
@@ -236,7 +239,7 @@ class TracDocsPlugin(Component):
         add_stylesheet(req, 'docs/prettify.css')
         add_script(req, 'docs/prettify.js')
 
-        return 'docs.cs', None
+        return 'docs.html', data, None
 
     def _do_save(self, req, page):
         if not page.exists:
@@ -251,7 +254,7 @@ class TracDocsPlugin(Component):
         page.save(req, text, comment)
         req.redirect(req.href.docs(page.base))
 
-    def _render_editor(self, req, page, preview=False):
+    def _render_editor(self, req, page, data, preview=False):
         req.perm.assert_permission('WIKI_MODIFY')
 
         if page.node.isdir:
@@ -269,13 +272,13 @@ class TracDocsPlugin(Component):
         # FIXME: self._set_title(req, page, 'edit')
 
         if preview:
-            req.hdf['docs.content'] = page.get_html(req)
+            data['content'] = page.get_html(req)
 
-        req.hdf['docs.page_name'] = page.base
-        req.hdf['docs.page_source'] = page.chunk
-        req.hdf['docs.version'] = page.version
-        req.hdf['docs.author'] = author
-        req.hdf['docs.comment'] = comment
+        data['page_name'] = page.base
+        data['page_source'] = page.chunk
+        data['version'] = page.version
+        data['author'] = author
+        data['comment'] = comment
 
 
     # ITemplateProvider methods
@@ -410,6 +413,7 @@ class FilePage(Page):
                                 '<pre class="literal-block prettyprint">')
 
         if 'prettyprint' in result:
+            # FIXME: Add as an event listener instead?
             result += """
                 <script type="text/javascript">
                 var origOnLoad = window.onload;

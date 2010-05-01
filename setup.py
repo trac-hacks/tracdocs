@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 PACKAGE = 'TracDocs'
-VERSION = '0.2'
+VERSION = '0.3'
 
 setup(
     name=PACKAGE, version=VERSION,
@@ -13,7 +13,7 @@ setup(
         'tracdocs': [
             'htdocs/*.css',
             'htdocs/*.js',
-            'templates/*.cs'
+            'templates/*.html'
         ]
     },
     entry_points = {
