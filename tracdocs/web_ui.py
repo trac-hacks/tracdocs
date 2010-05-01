@@ -11,7 +11,7 @@ from trac.util import get_reporter_id
 from trac.util.html import html, Markup
 from trac.web import IRequestHandler
 from trac.web.chrome import INavigationContributor, ITemplateProvider
-from trac.web.chrome import add_stylesheet, add_script, add_link
+from trac.web.chrome import add_ctxtnav, add_stylesheet, add_script, add_link
 from trac.versioncontrol.api import Node
 from trac.versioncontrol.svn_fs import SubversionRepository
 
@@ -146,18 +146,6 @@ class TracDocsPlugin(Component):
 
         data['editable'] = not node.isdir
 
-        # Store the history of the current dirpath
-        history = [{'name': 'root', 'href': req.href.docs()}]
-        t = ''
-        for s in base[1:].split('/'):
-            if not s: continue
-            t += '/' + s
-            history.append({
-                'name' : s,
-                'href' : req.href.docs(t),
-            })
-        data['history'] = list(reversed(history))
-
         if req.method == 'POST':
 
             if action == 'edit':
@@ -238,6 +226,17 @@ class TracDocsPlugin(Component):
         # Include google-code-prettify
         add_stylesheet(req, 'docs/prettify.css')
         add_script(req, 'docs/prettify.js')
+
+        # Include context navigation links
+        history = [('root', req.href.docs())]
+        t = ''
+        for s in base[1:].split('/'):
+            if not s: continue
+            t += '/' + s
+            history.append((s, req.href.docs(t)))
+        for h in reversed(history):
+            add_ctxtnav(req, h[0], h[1])
+        add_ctxtnav(req, 'Revision Log', req.href.log(path))
 
         return 'docs.html', data, None
 

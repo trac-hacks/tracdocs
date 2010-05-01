@@ -1,0 +1,123 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:i18n="http://genshi.edgewall.org/i18n"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="layout.html" />
+  <head>
+      <title py:if="title">$title</title>
+  </head>
+  <body>
+
+<div id="content" class="wiki">
+
+${index}
+
+<py:if test="entries">
+<p/>
+<div class="indent">
+<py:for each="entry in entries">
+<div class="${entry.kind}">
+<a href="${entry.href}">${entry.name}</a><py:if
+test="entry.ext"><div class="ext">(${entry.ext})</div></py:if>
+</div>
+</py:for>
+</div>
+</py:if>
+
+<py:if test="action == 'view'">
+<div id="wikipage">
+  <py:if test="content">${content}</py:if>
+</div>
+</py:if>
+
+<py:if test="editable and (action in ('edit', 'preview', 'collision'))">
+<h1>Editing "${page_name}"</h1>
+<py:if test="action == 'preview'">
+<table id="info" >
+  <tbody><tr><th>
+Preview of future version ${version+1} (modified by ${author})
+  </th></tr><tr>
+  <td class="message">${comment}</td></tr></tbody>
+</table> 
+<fieldset id="preview">
+  <legend>Preview (<a href="#edit">skip</a>)</legend>
+  <div id="wikipage">${content}</div>
+</fieldset>
+</py:if>
+<py:if test="action == 'collision'">
+<div class="system-message">
+  Sorry, this page has been modified by somebody else since you started
+  editing. Your changes cannot be saved.
+</div>
+</py:if>
+
+<form id="edit" action="${current_href}" method="post">
+
+<input type="hidden" name="action" value="edit" />
+<input type="hidden" name="version" value="${version}" />
+
+<textarea id="text" name="text" cols="80" rows="30"
+    style="font-family: monospace; font-size:
+    1.0em;">${page_source}</textarea>
+
+<p />
+
+<fieldset id="changeinfo">
+    <legend>Change information</legend>
+    <py:if test="trac.authname == 'anonymous'">
+    <div class="field">
+        <label>Your email or username:<br />
+        <input id="author" type="text" name="author" size="30" value="${author}" />
+        </label>
+    </div>
+    </py:if>
+
+    <div class="field">
+        <label>Comment about this change (optional):<br />
+        <input id="comment" type="text" name="comment" size="60" value="${comment}" />
+        </label>
+    </div>
+</fieldset>
+
+<br />
+
+<div class="buttons">
+  <py:choose test="action">
+    <py:when test="'collision'">
+    <input type="submit" name="preview" value="Preview" disabled="disabled" />&nbsp;
+    <input type="submit" name="save" value="Submit changes" disabled="disabled" />&nbsp;
+    </py:when>
+    <py:otherwise>
+    <input type="submit" name="preview" value="Preview" accesskey="r" />&nbsp;
+    <input type="submit" name="save" value="Submit changes" />&nbsp;
+    </py:otherwise>
+  </py:choose>
+    <input type="submit" name="cancel" value="Cancel" />
+</div>
+
+</form>
+
+</py:if>
+
+
+<py:if test="editable and action == 'view' and
+            ('WIKI_MODIFY' in perm or 'WIKI_DELETE' in perm)">
+<div class="buttons">
+<py:if test="'WIKI_MODIFY' in perm">
+<form method="get" action="${current_href}">
+<div>
+  <input type="hidden" name="action" value="edit" />
+  <input type="submit" value="Edit this page" accesskey="e" />
+</div>
+</form>
+</py:if>
+</div>
+</py:if>
+
+</div>
+</body>
+</html>
+
