@@ -24,6 +24,7 @@ Some features:
 * Highlights source code using google-code-prettify.
 * Supports editing through Subversion and the Trac website.
 * Handles user permission using Subversion authorization.
+* Supports downloading binaries with proper mime-types for non-text files.
 
 Note: this plugin respects the access rights of the user that is logged in.
 
@@ -48,4 +49,13 @@ documents::
 
     [docs]
     root = wiki/trunk
+
+By default, it will show the title of the directory that you are navigating,
+but if you create an index.txt file in the directory, it will use that
+instead, allowing you to put additional documentation at the top of a
+directory structure.
+
+It uses the WIKI_VIEW permissions to control access to the documentation
+pages.
+
 
