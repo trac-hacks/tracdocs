@@ -136,7 +136,7 @@ class TracDocsPlugin(Component):
         data = {}
         data['title'] = title
 
-        repos = self.env.get_repository(req.authname)
+        repos = self.env.get_repository(authname=req.authname)
         node = repos.get_node(path, None)
 
         if node.isdir:
