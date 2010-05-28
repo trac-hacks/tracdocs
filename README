@@ -1,19 +1,19 @@
 ==============
-   tracdocs
+   TracDocs
 ==============
 
 
 Description
 ===========
 
-The 'tracdocs' project is a plugin for the 'trac' project management tool.
+The TracDocs project is a plugin for the 'trac' project management tool.
 
 Many documents exists adjacent to the code that is being developed and
 managed. These documents are not conveniently stored in a wiki due to the lack
 of offline access and editing. Also, a wiki tends to be less structured than
 the documentation that lives with source code.
 
-The 'tracdocs' plugin adds a "Docs" tab to the trac project. Underneath this
+The TracDocs plugin adds a "Docs" tab to the trac project. Underneath this
 tab can be found all of the documentation that the current logged in user has
 access to.
 
@@ -32,7 +32,7 @@ Note: this plugin respects the access rights of the user that is logged in.
 Installation
 ============
 
-The 'tracdocs' plugin can be installed using standard::
+The TracDocs plugin can be installed using standard::
 
     python setup.py install
 
