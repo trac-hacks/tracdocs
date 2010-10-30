@@ -225,7 +225,7 @@ class TracDocsPlugin(Component):
 
         # Include google-code-prettify
         add_stylesheet(req, 'docs/prettify.css')
-        add_script(req, 'docs/prettify.js')
+        add_script(req, 'docs/prettify.min.js')
 
         # Include context navigation links
         history = [('root', req.href.docs())]
