@@ -40,7 +40,7 @@ The TracDocs plugin can be installed using standard::
 Configuration
 =============
 
-It is configured in the trac.ini file by enabling the component and
+It is configured in the ``trac.ini`` file by enabling the component and
 configuring the path within the Subversion repository to store the wiki
 documents::
 
@@ -55,7 +55,7 @@ but if you create an index.txt file in the directory, it will use that
 instead, allowing you to put additional documentation at the top of a
 directory structure.
 
-It uses the WIKI_VIEW permissions to control access to the documentation
+It uses the ``WIKI_VIEW`` permissions to control access to the documentation
 pages.
 
 
