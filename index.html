@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="TracDocs : Subversion-backed wiki plugin for Trac." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>TracDocs</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mrjbq7/tracdocs">Fork Me on GitHub</a>
+
+          <h1 id="project_title">TracDocs</h1>
+          <h2 id="project_tagline">Subversion-backed wiki plugin for Trac.</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/mrjbq7/tracdocs/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/mrjbq7/tracdocs/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>TracDocs</h1>
+
+<p>The TracDocs project is a plugin for the 'trac' project management tool.</p>
+
+<p>Many documents exists adjacent to the code that is being developed and
+managed. These documents are not conveniently stored in a wiki due to the lack
+of offline access and editing. Also, a wiki tends to be less structured than
+the documentation that lives with source code.</p>
+
+<p>The TracDocs plugin adds a "Docs" tab to the trac project. Underneath this
+tab can be found all of the documentation that the current logged in user has
+access to.</p>
+
+<p>Some features:</p>
+
+<ul>
+<li>Uses RestructuredText as a markup language.</li>
+<li>Supports inline images and links.</li>
+<li>Highlights source code using google-code-prettify.</li>
+<li>Supports editing through Subversion and the Trac website.</li>
+<li>Handles user permission using Subversion authorization.</li>
+<li>Supports downloading binaries with proper mime-types for non-text files.</li>
+</ul><p>Note: this plugin respects the access rights of the user that is logged in.</p>
+
+<h2>Installation</h2>
+
+<p>The TracDocs plugin can be installed using standard:</p>
+
+<pre><code>$ easy_install tracdocs
+</code></pre>
+
+<p>Or, grab the sources and build using:</p>
+
+<pre><code>$ python setup.py install
+</code></pre>
+
+<h2>Configuration</h2>
+
+<p>It is configured in the <code>trac.ini</code> file by enabling the component and
+configuring the path within the Subversion repository to store the wiki
+documents:</p>
+
+<div class="highlight">
+<pre><span class="k">[components]</span>
+<span class="na">tracdocs.*</span> <span class="o">=</span> <span class="s">enabled</span>
+
+<span class="k">[docs]</span>
+<span class="na">root</span> <span class="o">=</span> <span class="s">wiki/trunk</span>
+</pre>
+</div>
+
+
+<p>By default, it will show the title of the directory that you are navigating,
+but if you create an index.txt file in the directory, it will use that
+instead, allowing you to put additional documentation at the top of a
+directory structure.</p>
+
+<p>It uses the <code>WIKI_VIEW</code> permissions to control access to the documentation
+pages.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">TracDocs maintained by <a href="https://github.com/mrjbq7">mrjbq7</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
