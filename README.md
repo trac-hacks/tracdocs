@@ -1,10 +1,4 @@
-==============
-   TracDocs
-==============
-
-
-Description
-===========
+# TracDocs
 
 The TracDocs project is a plugin for the 'trac' project management tool.
 
@@ -29,20 +23,18 @@ Some features:
 Note: this plugin respects the access rights of the user that is logged in.
 
 
-Installation
-============
+# Installation
 
-The TracDocs plugin can be installed using standard::
+The TracDocs plugin can be installed using standard:
 
     python setup.py install
 
 
-Configuration
-=============
+# Configuration
 
 It is configured in the ``trac.ini`` file by enabling the component and
 configuring the path within the Subversion repository to store the wiki
-documents::
+documents:
 
     [components]
     tracdocs.* = enabled
@@ -51,7 +43,7 @@ documents::
     root = wiki/trunk
 
 By default, it will show the title of the directory that you are navigating,
-but if you create an index.txt file in the directory, it will use that
+but if you create an ``index.txt`` file in the directory, it will use that
 instead, allowing you to put additional documentation at the top of a
 directory structure.
 
@@ -59,3 +51,6 @@ It uses the ``WIKI_VIEW`` permissions to control access to the documentation
 pages.
 
 
+# Example
+
+![Screenshot](tracdocs/raw/master/docs/docs.png)
