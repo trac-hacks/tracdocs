@@ -27,8 +27,9 @@ Note: this plugin respects the access rights of the user that is logged in.
 
 The TracDocs plugin can be installed using standard:
 
-    python setup.py install
-
+```
+python setup.py install
+```
 
 # Configuration
 
@@ -36,11 +37,13 @@ It is configured in the ``trac.ini`` file by enabling the component and
 configuring the path within the Subversion repository to store the wiki
 documents:
 
-    [components]
-    tracdocs.* = enabled
+```ini
+[components]
+tracdocs.* = enabled
 
-    [docs]
-    root = wiki/trunk
+[docs]
+root = wiki/trunk
+```
 
 By default, it will show the title of the directory that you are navigating,
 but if you create an ``index.txt`` file in the directory, it will use that
