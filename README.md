@@ -49,8 +49,3 @@ directory structure.
 
 It uses the ``WIKI_VIEW`` permissions to control access to the documentation
 pages.
-
-
-# Example
-
-![Screenshot](tracdocs/raw/master/docs/docs.png)
