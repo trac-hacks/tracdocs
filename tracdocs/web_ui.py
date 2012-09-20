@@ -4,7 +4,7 @@ import re
 
 # trac imports
 from trac.core import *
-from trac.mimeview.api import Mimeview, IContentConverter
+from trac.mimeview.api import Mimeview, IContentConverter, Context
 from trac.perm import IPermissionRequestor
 from trac.search import ISearchSource, shorten_result
 from trac.util import get_reporter_id
@@ -181,7 +181,7 @@ class TracDocsPlugin(Component):
                     text.append('=' * (len(page.name) + 6))
                     text = '\n'.join(text)
                     mimetype = 'text/x-rst; charset=utf8'
-                    result = mimeview.render(req, mimetype, text)
+                    result = mimeview.render(Context.from_request(req), mimetype, text)
                     data['index'] = result
 
             else:
@@ -193,6 +193,7 @@ class TracDocsPlugin(Component):
                     mime_type.startswith('text/html'):
                     req.send_response(200)
                     req.send_header('Content-Type', mime_type)
+                    req.send_header('Content-Length', len(chunk))
                     req.end_headers()
                     req.write(chunk)
                     return
@@ -300,7 +301,7 @@ class Page(object):
         self.root = root
         self.base = base
         self.path = path = root + base
-        self.version = self.node._requested_rev
+        self.version = self.node.rev
 
         slash = base.rfind('/')
         dot = base.rfind('.')
@@ -401,7 +402,7 @@ class FilePage(Page):
         chunk = re.sub('\.\. image\:\:\s*(\S+)', fixup, chunk, re.MULTILINE)
 
         # Assume all wiki pages are ReStructuredText documents 
-        result = self.mimeview.render(req, mime_type, chunk)
+        result = self.mimeview.render(Context.from_request(req), mime_type, chunk)
 
         if not isinstance(result, (str, unicode)):
             result = unicode(result)
@@ -473,7 +474,7 @@ class FilePage(Page):
         from svn import repos as _repos
 
         repos = self.node.repos.repos #.repos
-        revnum = self.node._requested_rev
+        revnum = self.node.rev
         author = req.authname
         message = 'Edited %s' % self.base[1:]
         if comment:
