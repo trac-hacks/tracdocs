@@ -34,7 +34,7 @@ class TracDocsPlugin(Component):
             return
 
         root = self.config.get('docs', 'root', '')
-        repos = self.env.get_repository(req.authname)
+        repos = self.env.get_repository(authname=req.authname)
         node = repos.get_node(root, None)
 
         if not isinstance(query, list):
