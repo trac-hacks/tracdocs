@@ -14,8 +14,8 @@ setup(
     long_description = read('README.md'),
     author = "John Benediktsson",
     author_email = 'mrjbq7@gmail.com',
-    url = "http://github.com/mrjbq7/tracdocs",
-    download_url = "http://github.com/mrjbq7/tracdocs/zipball/master#egg=TracDocs-0.3",
+    url = "http://github.com/trac-hacks/tracdocs",
+    download_url = "http://github.com/trac-hacks/tracdocs/zipball/master#egg=TracDocs-0.3",
     packages=['tracdocs'],
     classifiers = [
         "Development Status :: 4 - Beta",
@@ -34,6 +34,6 @@ setup(
             'tracdocs.web_ui = tracdocs.web_ui',
         ]
     },
-    dependency_links = ['http://github.com/mrjbq7/tracdocs/zipball/master#egg=TracDocs-0.3']
+    dependency_links = ['http://github.com/trac-hacks/tracdocs/zipball/master#egg=TracDocs-0.3']
 )
 
