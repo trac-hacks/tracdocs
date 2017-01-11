@@ -1,6 +1,7 @@
 # TracDocs
 
-The TracDocs project is a plugin for the 'trac' project management tool.
+The TracDocs project is a plugin for the [trac](https://trac.edgewall.org/)
+project management tool.
 
 Many documents exists adjacent to the code that is being developed and
 managed. These documents are not conveniently stored in a wiki due to the lack
@@ -13,11 +14,17 @@ access to.
 
 Some features:
 
-* Uses RestructuredText as a markup language.
+* Uses [RestructuredText](http://docutils.sourceforge.net/rst.html) as a
+  markup language.
+
 * Supports inline images and links.
+
 * Highlights source code using google-code-prettify.
+
 * Supports editing through Subversion and the Trac website.
+
 * Handles user permission using Subversion authorization.
+
 * Supports downloading binaries with proper mime-types for non-text files.
 
 Note: this plugin respects the access rights of the user that is logged in.
