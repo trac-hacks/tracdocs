@@ -23,15 +23,21 @@ Some features:
 Note: this plugin respects the access rights of the user that is logged in.
 
 
-# Installation
+## Installation
 
 The TracDocs plugin can be installed using standard:
 
 ```
-python setup.py install
+$ pip install tracdocs
 ```
 
-# Configuration
+Or, grab the sources and build using:
+
+```
+$ python setup.py install
+```
+
+## Configuration
 
 It is configured in the ``trac.ini`` file by enabling the component and
 configuring the path within the Subversion repository to store the wiki
